@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2ntgegwiapap"]
+
+[ext_resource type="PackedScene" uid="uid://b27dkm8roragp" path="res://player/player.tscn" id="1_ari2h"]
+
+[node name="BossFight" type="Node2D" unique_id=100000001]
+
+[node name="Player" parent="." unique_id=100000002 instance=ExtResource("1_ari2h")]
+position = Vector2(100, 200)
