@@ -1,0 +1,12 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1776418134
+game.tscn::PackedScene::1539469480900173400::1775134054::0::1::::<><><>0<>0<><>::uid://b27dkm8roragp::::res://player/player.tscn
+icon.svg::CompressedTexture2D::7699132466057969142::1775130128::1775134054::1::::<><><>0<>0<>162871861af60b43a019e401dde80042<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Boss Fights/::1776415878
+boss.gd::GDScript::8642867788389993588::1775134148::0::1::::<>CharacterBody2D<><>0<>0<><>::
+boss_fight.tscn::PackedScene::1923100247028158091::1775134054::0::1::::<><><>0<>0<><>::uid://b27dkm8roragp::::res://player/player.tscn
+::res://player/::1775134054
+Player idle.png::CompressedTexture2D::6996466609443635913::1775130128::1775134054::1::::<><><>0<>0<>34e4615044712a505b58ccef948fc414<>res://.godot/imported/Player idle.png-6da2bcf8414ab3851cb9d3b930379e33.ctex::
+Player-idle-sheet.png::CompressedTexture2D::1431395936897704391::1775130128::1775134054::1::::<><><>0<>0<>ac9207e0f74404edbdbb1751bdfe9989<>res://.godot/imported/Player-idle-sheet.png-94b009eb8fdb85ccb5be199fd3b929b0.ctex::
+player.gd::GDScript::2579511847101975794::1775131739::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::4347780241017763363::1775134054::0::1::::<><><>0<>0<><>::uid://unm48shccfxv::::res://player/Player-idle-sheet.png<>uid://bc0sgh3qcmdsc::::res://player/player.gd

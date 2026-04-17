@@ -154,5 +154,5 @@ frame_progress = 0.47430006
 shape = SubResource("RectangleShape2D_pbfsw")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1234567890]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
