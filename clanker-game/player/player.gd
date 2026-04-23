@@ -22,6 +22,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
+	#Retardigga
 	
 var max_hp = 100
 var current_hp = 100
