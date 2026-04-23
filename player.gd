@@ -10,6 +10,7 @@ const SPEED = 50
 #var dash_direction := Vector2.ZERO
 
 func _physics_process(delta):
+	
 	var direction = Vector2.ZERO
 
 	if Input.is_action_pressed("Right"):
@@ -17,6 +18,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Left"):
 		direction.x -= 1
 	if Input.is_action_pressed("Down"):
+		$AnimatedSprite2D.play("down")
 		direction.y += 1
 	if Input.is_action_pressed("Up"):
 		direction.y -= 1

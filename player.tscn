@@ -136,7 +136,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_pylmc")
 }],
 "loop": true,
-"name": &"idle-down",
+"name": &"down",
+"speed": 18.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -148,4 +153,4 @@ shape = SubResource("RectangleShape2D_pbfsw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890613037]
 sprite_frames = SubResource("SpriteFrames_pbfsw")
-animation = &"idle-down"
+animation = &"new_animation"
