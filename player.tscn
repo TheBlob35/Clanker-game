@@ -143,6 +143,11 @@ animations = [{
 "loop": true,
 "name": &"new_animation",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation_2_test",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=298736989]
@@ -153,4 +158,4 @@ shape = SubResource("RectangleShape2D_pbfsw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=890613037]
 sprite_frames = SubResource("SpriteFrames_pbfsw")
-animation = &"new_animation"
+animation = &"new_animation_2_test"

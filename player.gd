@@ -37,7 +37,7 @@ func _physics_process(delta):
 	#if dash_time_left > 0:
 		#velocity = dash_direction * DASH_SPEED
 	#else:
-	
+	#Lolz
 	velocity = direction * SPEED
 
 	move_and_slide()
