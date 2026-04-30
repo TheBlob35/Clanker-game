@@ -1,6 +1,0 @@
-TileMapLayer
-StaticBody2D
-CollisionShape2D
-Area2D
-Node2D
-Camera2D

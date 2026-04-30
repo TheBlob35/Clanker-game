@@ -155,7 +155,7 @@ script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=343742155]
 sprite_frames = SubResource("SpriteFrames_qp52p")
-animation = &"idle-when-left_right"
+animation = &"idle-when-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2032979201]
 shape = SubResource("RectangleShape2D_pbfsw")

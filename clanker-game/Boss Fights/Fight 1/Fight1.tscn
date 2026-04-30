@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://2ntgegwiapap"]
+
+[ext_resource type="Script" uid="uid://byd5dksaun4am" path="res://Boss Fights/Fight 1/Fight1.gd" id="1_n7x0c"]
+[ext_resource type="PackedScene" uid="uid://b27dkm8roragp" path="res://player/player.tscn" id="2_c65qo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ari2h"]
+size = Vector2(1151, 20)
+
+[node name="BossFight" type="Node2D" unique_id=100000001]
+script = ExtResource("1_n7x0c")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1137578549]
+position = Vector2(576, 324)
+
+[node name="Player" parent="." unique_id=100000002 instance=ExtResource("2_c65qo")]
+position = Vector2(576, 501)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1775054120]
+position = Vector2(576, 350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=750556023]
+shape = SubResource("RectangleShape2D_ari2h")
