@@ -2,10 +2,16 @@ extends CharacterBody2D
 
 const SPEED = 100
 
-var max_hp = 100
-var current_hp = 100
+var max_hp: int
+var current_hp: int
+var damage: int
+var crit_chance: float
 
 func _ready():
+	max_hp = get_meta("Health")
+	current_hp = max_hp
+	damage = get_meta("Damage")
+	crit_chance = get_meta("Crit")
 	add_to_group("player")
 	$AnimatedSprite2D.play("idle-when-down")
 

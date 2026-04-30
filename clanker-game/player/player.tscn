@@ -152,6 +152,9 @@ size = Vector2(26, 30)
 
 [node name="Player" type="CharacterBody2D" unique_id=298736989]
 script = ExtResource("1_onrkg")
+metadata/Health = 100
+metadata/Damage = 0
+metadata/Crit = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=343742155]
 sprite_frames = SubResource("SpriteFrames_qp52p")

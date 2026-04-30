@@ -1,6 +1,36 @@
 [gd_scene format=3 uid="uid://cmrqgmkqfpr87"]
 
 [ext_resource type="Script" uid="uid://dvew1f2x6l8ea" path="res://Bosses/Boss 1/boss.gd" id="1_nlayo"]
+[ext_resource type="Texture2D" uid="uid://d4dv1fbg4fga" path="res://assets/Boss1 placeholder.jpg" id="2_hxu22"]
+[ext_resource type="Texture2D" uid="uid://bhjq21axcy2f0" path="res://assets/Boss1 Shield placeholder.jpg" id="3_0mg0a"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1188212622]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r7fr"]
+
+[node name="Boss1" type="CharacterBody2D" unique_id=1188212622]
 script = ExtResource("1_nlayo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=996635607]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_hxu22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=121721588]
+visible = false
+scale = Vector2(8, 5.5)
+shape = SubResource("RectangleShape2D_7r7fr")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=727826412]
+position = Vector2(-11, -49)
+gizmo_extents = 1.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1415491543]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1344560445]
+visible = false
+scale = Vector2(8, 5.5)
+shape = SubResource("RectangleShape2D_7r7fr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1100117659]
+visible = false
+position = Vector2(0, 22)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_0mg0a")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dik3ml4tbokoj"]
+
+[ext_resource type="Script" uid="uid://disrq5hdbua0y" path="res://Bosses/Boss 1/mortar_bullet.gd" id="1_842wy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mortar"]
+size = Vector2(18, 18)
+
+[node name="Area2D" type="Area2D" unique_id=2012489483]
+script = ExtResource("1_842wy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=959614202]
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
+color = Color(1, 0.3, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2123316850]
+shape = SubResource("RectangleShape2D_mortar")
