@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum Phase { ONE, TWO }
+enum Phase { ONE, TWO, THREE }
 enum MoveState { SWEEP_A, SWEEP_B, CENTERING, RELOADING }
 
 const PHASE_TWO_THRESHOLD = 0.66
@@ -57,6 +57,8 @@ func _physics_process(delta):
 			_phase_one(delta)
 		Phase.TWO:
 			_phase_two(delta)
+		Phase.THREE:
+			_phase_three(delta)
 
 # --- Phase 1: stationary, shoots directly at player ---
 
@@ -127,6 +129,11 @@ func _phase_two(delta):
 				velocity.x = move_toward(velocity.x, sign(dist) * MOVE_SPEED, ACCELERATION * delta)
 				move_and_slide()
 
+func _phase_three(delta):
+	# TODO: movement (faster sweeps?)
+	# TODO: attack pattern
+	pass
+
 func _start_sweep():
 	_sweep_time = randf_range(2, 3.5)
 	_sweep_dir = [-1, 1].pick_random()
@@ -150,9 +157,10 @@ func _fire_mortar(delta):
 func _shoot_mortar():
 	var bullet = MORTAR_BULLET.instantiate()
 	bullet.target_pos = player.global_position + Vector2(
-		randf_range(-220.0, 220.0),
-		randf_range(-150.0, 150.0)
+		randf_range(-320.0, 320.0),
+		randf_range(-250.0, 250.0)
 	)
+	
 	bullet.damage = 30
 	get_parent().add_child(bullet)
 	bullet.global_position = barrel.global_position
@@ -170,6 +178,8 @@ func take_damage(amount: int):
 	print("Boss HP: ", current_hp)
 	if current_hp <= max_hp * (1.0 - PHASE_TWO_THRESHOLD) and current_phase == Phase.ONE:
 		_enter_phase_two()
+	if current_hp <= max_hp * (1.0 - PHASE_THREE_THRESHOLD) and current_phase == Phase.TWO:
+		_enter_phase_three()
 	if current_hp <= 0:
 		die()
 
@@ -177,6 +187,11 @@ func _enter_phase_two():
 	current_phase = Phase.TWO
 	print("Phase 2!")
 	# TODO: play transition animation/sound
+	
+	
+func _enter_phase_three():
+	current_phase = Phase.THREE
+	# TODO: reset state, play transition animation/sound
 
 func die():
 	print("Boss defeated!")
