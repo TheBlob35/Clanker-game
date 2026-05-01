@@ -8,10 +8,12 @@ const PHASE_THREE_THRESHOLD = 0.3
 
 const MOVE_SPEED = 140.0
 const ACCELERATION = 90.0
-const GATLING_RATE = 2.25
+const GATLING_RATE = 2.5
+const GATLING_BURST = 30
+const GATLING_RELOAD = 5.0
 const MORTAR_BURST_DELAY = 0.2
 const MORTAR_INTERVAL = 1.2
-const RELOAD_TIME = 4.0
+const MORTAR_RELOAD = 4.0
 
 var max_hp = 600
 var current_hp = 600
@@ -22,6 +24,7 @@ var initial_x: float
 
 var player: CharacterBody2D = null
 var _gatling_timer := 0.0
+var _gatling_burst_count := 0
 var _mortar_timer := 0.0
 var _burst_count := 0
 
@@ -59,10 +62,17 @@ func _physics_process(delta):
 
 func _phase_one(delta):
 	_gatling_timer += delta
-	if _gatling_timer >= 1.0 / GATLING_RATE:
-		_gatling_timer = 0.0
-		_shoot_gatling()
-
+	if _gatling_burst_count < GATLING_BURST:
+		if _gatling_timer >= 1.0 / GATLING_RATE:
+			_gatling_timer = 0.0
+			_gatling_burst_count += 1
+			_shoot_gatling()
+	else:
+		if _gatling_timer >= GATLING_RELOAD:
+			_gatling_timer = 0.0
+			_gatling_burst_count = 0
+		
+		
 func _shoot_gatling():
 	var bullet = BULLET.instantiate()
 	get_parent().add_child(bullet)
@@ -81,7 +91,7 @@ func _phase_two(delta):
 			move_and_slide()
 			if abs(velocity.x) < 1.0:
 				_reload_elapsed += delta
-				if _reload_elapsed >= RELOAD_TIME:
+				if _reload_elapsed >= MORTAR_RELOAD:
 					_start_sweep()
 
 		MoveState.SWEEP_A:
