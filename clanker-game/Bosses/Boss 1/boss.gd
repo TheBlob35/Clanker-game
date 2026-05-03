@@ -6,7 +6,8 @@ enum MoveState { SWEEP_A, SWEEP_B, CENTERING, RELOADING }
 const PHASE_TWO_THRESHOLD = 0.66
 const PHASE_THREE_THRESHOLD = 0.3
 
-const MOVE_SPEED = 140.0
+const MOVE_SPEED_2 = 140.0
+const MOVE_SPEED_3 = 200.0
 const ACCELERATION = 90.0
 const GATLING_RATE = 2.5
 const GATLING_BURST = 30
@@ -14,15 +15,18 @@ const GATLING_RELOAD = 5.0
 const MORTAR_BURST_DELAY = 0.2
 const MORTAR_INTERVAL = 1.2
 const MORTAR_RELOAD = 4.0
+const TARGET_SWEEPS_2 = 1
+const TARGET_SWEEPS_3 = 3
 
 var max_hp = 600
 var current_hp = 600
-var current_phase = Phase.TWO
+var current_phase = Phase.THREE
 var invulnerable = false
 var initial_y: float
 var initial_x: float
 
 var player: CharacterBody2D = null
+
 var _gatling_timer := 0.0
 var _gatling_burst_count := 0
 var _mortar_timer := 0.0
@@ -31,6 +35,7 @@ var _burst_count := 0
 var _move_state = MoveState.RELOADING
 var _sweep_dir := 1
 var _sweep_time := 0.0
+var _sweeps := 0
 var _sweep_elapsed := 0.0
 var _reload_elapsed := 0.0
 
@@ -98,7 +103,7 @@ func _phase_two(delta):
 
 		MoveState.SWEEP_A:
 			_set_shield(true)
-			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED, ACCELERATION * delta)
+			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED_3, ACCELERATION * delta)
 			move_and_slide()
 			_fire_mortar(delta)
 			_sweep_elapsed += delta
@@ -109,7 +114,7 @@ func _phase_two(delta):
 
 		MoveState.SWEEP_B:
 			_set_shield(true)
-			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED, ACCELERATION * delta)
+			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED_3, ACCELERATION * delta)
 			move_and_slide()
 			_fire_mortar(delta)
 			_sweep_elapsed += delta
@@ -120,21 +125,68 @@ func _phase_two(delta):
 		MoveState.CENTERING:
 			_set_shield(true)
 			var dist = initial_x - global_position.x
-			if abs(dist) < 6.0:
+			if abs(dist) < 1.0:
 				global_position.x = initial_x
 				velocity.x = 0.0
 				_reload_elapsed = 0.0
-				_move_state = MoveState.RELOADING
+				_sweeps += 1
+				if _sweeps >= TARGET_SWEEPS_2:
+					_move_state = MoveState.RELOADING
+				else:
+					_move_state = MoveState.SWEEP_A
 			else:
-				velocity.x = move_toward(velocity.x, sign(dist) * MOVE_SPEED, ACCELERATION * delta)
+				velocity.x = move_toward(velocity.x, sign(dist) * MOVE_SPEED_3, ACCELERATION * delta)
 				move_and_slide()
 
 func _phase_three(delta):
-	# TODO: movement (faster sweeps?)
-	# TODO: attack pattern
 	match _move_state:
-		pass
-	pass
+		MoveState.RELOADING:
+			_set_shield(false)
+			velocity.x = move_toward(velocity.x, 0.0, ACCELERATION * delta)
+			move_and_slide()
+			if abs(velocity.x) < 1.0:
+				_reload_elapsed += delta
+				if _reload_elapsed >= MORTAR_RELOAD:
+					_sweeps = 0
+					_start_sweep()
+
+		MoveState.SWEEP_A:
+			_set_shield(true)
+			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED_3, ACCELERATION * delta)
+			move_and_slide()
+			_fire_mortar(delta)
+			_sweep_elapsed += delta
+			if _sweep_elapsed >= _sweep_time:
+				_sweep_elapsed = 0.0
+				_sweep_dir *= -1
+				_move_state = MoveState.SWEEP_B
+
+		MoveState.SWEEP_B:
+			_set_shield(true)
+			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED_3, ACCELERATION * delta)
+			move_and_slide()
+			_fire_mortar(delta)
+			_sweep_elapsed += delta
+			if _sweep_elapsed >= _sweep_time * 2.0:
+				_sweep_elapsed = 0.0
+				_move_state = MoveState.CENTERING
+
+		MoveState.CENTERING:
+			_set_shield(true)
+			var dist = initial_x - global_position.x
+			if abs(dist) < 1.0:
+				global_position.x = initial_x
+				velocity.x = 0.0
+				_reload_elapsed = 0.0
+				_sweeps += 1
+				if _sweeps >= TARGET_SWEEPS_3:
+					_move_state = MoveState.RELOADING
+				else:
+					_move_state = MoveState.SWEEP_A
+			else:
+				velocity.x = move_toward(velocity.x, sign(dist) * MOVE_SPEED_3, ACCELERATION * delta)
+				_fire_mortar(delta)
+				move_and_slide()
 	
 
 func _start_sweep():
