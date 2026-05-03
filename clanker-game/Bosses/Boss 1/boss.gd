@@ -37,15 +37,15 @@ var _reload_elapsed := 0.0
 @onready var barrel: Marker2D = $Marker2D
 @onready var shield: Area2D = $Area2D
 
-const BULLET = preload("res://Bosses/Boss 1/bullet.tscn")
-const MORTAR_BULLET = preload("res://Bosses/Boss 1/mortar_bullet.tscn")
+const BULLET = preload("res://Bosses/Boss 1/Bullet/bullet.tscn")
+const MORTAR_BULLET = preload("res://Bosses/Boss 1/Mortar/mortar_bullet.tscn")
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	shield.get_node("Sprite2D").visible = false
 	initial_y = global_position.y
 	initial_x = global_position.x
-
+ 
 func _physics_process(delta):
 	if player == null:
 		return
@@ -132,7 +132,10 @@ func _phase_two(delta):
 func _phase_three(delta):
 	# TODO: movement (faster sweeps?)
 	# TODO: attack pattern
+	match _move_state:
+		pass
 	pass
+	
 
 func _start_sweep():
 	_sweep_time = randf_range(2, 3.5)
@@ -156,9 +159,9 @@ func _fire_mortar(delta):
 
 func _shoot_mortar():
 	var bullet = MORTAR_BULLET.instantiate()
-	bullet.target_pos = player.global_position + Vector2(
-		randf_range(-320.0, 320.0),
-		randf_range(-250.0, 250.0)
+	bullet.target_pos = Vector2(
+		randf_range(0, 1152),
+		randf_range(390, 600)
 	)
 	
 	bullet.damage = 30
