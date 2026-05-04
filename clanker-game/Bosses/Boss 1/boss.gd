@@ -17,10 +17,11 @@ const MORTAR_INTERVAL = 1.2
 const MORTAR_RELOAD = 4.0
 const TARGET_SWEEPS_2 = 1
 const TARGET_SWEEPS_3 = 3
+const TRACKER_INTERVAL = 6.7
 
 var max_hp = 600
 var current_hp = 600
-var current_phase = Phase.THREE
+var current_phase = Phase.TWO
 var invulnerable = false
 var initial_y: float
 var initial_x: float
@@ -31,7 +32,9 @@ var _gatling_timer := 0.0
 var _gatling_burst_count := 0
 var _mortar_timer := 0.0
 var _burst_count := 0
+var _tracker_timer := 0.0
 
+var _lr_barrel = 1
 var _move_state = MoveState.RELOADING
 var _sweep_dir := 1
 var _sweep_time := 0.0
@@ -39,11 +42,14 @@ var _sweeps := 0
 var _sweep_elapsed := 0.0
 var _reload_elapsed := 0.0
 
-@onready var barrel: Marker2D = $Marker2D
-@onready var shield: Area2D = $Area2D
+@onready var barrel: Marker2D = $MainBarrel
+@onready var left_barrel: Marker2D = $LeftBarrel
+@onready var right_barrel: Marker2D = $RightBarrel
+@onready var shield: Area2D = $Shield
 
 const BULLET = preload("res://Bosses/Boss 1/Bullet/bullet.tscn")
 const MORTAR_BULLET = preload("res://Bosses/Boss 1/Mortar/mortar_bullet.tscn")
+const TRACKER = preload("res://Bosses/Boss 1/Tracker/tracker.tscn")
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -78,8 +84,7 @@ func _phase_one(delta):
 		if _gatling_timer >= GATLING_RELOAD:
 			_gatling_timer = 0.0
 			_gatling_burst_count = 0
-		
-		
+
 func _shoot_gatling():
 	var bullet = BULLET.instantiate()
 	get_parent().add_child(bullet)
@@ -139,12 +144,17 @@ func _phase_two(delta):
 				move_and_slide()
 
 func _phase_three(delta):
+	_tracker_timer += delta
+	if _tracker_timer >= TRACKER_INTERVAL:
+		_tracker_timer = 0.0
+		_shoot_tracker()
+
 	match _move_state:
 		MoveState.RELOADING:
 			_set_shield(false)
 			velocity.x = move_toward(velocity.x, 0.0, ACCELERATION * delta)
 			move_and_slide()
-			if abs(velocity.x) < 1.0:
+			if abs(velocity.x) < 0.7:
 				_reload_elapsed += delta
 				if _reload_elapsed >= MORTAR_RELOAD:
 					_sweeps = 0
@@ -171,10 +181,11 @@ func _phase_three(delta):
 				_sweep_elapsed = 0.0
 				_move_state = MoveState.CENTERING
 
+
 		MoveState.CENTERING:
 			_set_shield(true)
 			var dist = initial_x - global_position.x
-			if abs(dist) < 1.0:
+			if abs(dist) < 0.7:
 				global_position.x = initial_x
 				velocity.x = 0.0
 				_reload_elapsed = 0.0
@@ -187,7 +198,7 @@ func _phase_three(delta):
 				velocity.x = move_toward(velocity.x, sign(dist) * MOVE_SPEED_3, ACCELERATION * delta)
 				_fire_mortar(delta)
 				move_and_slide()
-	
+
 
 func _start_sweep():
 	_sweep_time = randf_range(2, 3.5)
@@ -215,10 +226,21 @@ func _shoot_mortar():
 		randf_range(0, 1152),
 		randf_range(390, 600)
 	)
-	
+
 	bullet.damage = 30
 	get_parent().add_child(bullet)
 	bullet.global_position = barrel.global_position
+
+func _shoot_tracker():
+	var bullet = TRACKER.instantiate()
+	bullet.direction = (player.global_position - barrel.global_position).normalized()
+	get_parent().add_child(bullet)
+	match _lr_barrel:
+		1:
+			bullet.global_position = left_barrel.global_position
+		-1:
+			bullet.global_position = right_barrel.global_position
+	_lr_barrel *= -1
 
 func _set_shield(active: bool):
 	invulnerable = active
