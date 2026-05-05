@@ -1,4 +1,4 @@
-extends CharacterBody2D
+﻿extends CharacterBody2D
 
 enum Phase { ONE, TWO, THREE }
 enum MoveState { SWEEP_A, SWEEP_B, CENTERING, RELOADING }
@@ -21,7 +21,7 @@ const TRACKER_INTERVAL = 6.7
 
 var max_hp = 600
 var current_hp = 600
-var current_phase = Phase.TWO
+var current_phase = Phase.THREE
 var invulnerable = false
 var initial_y: float
 var initial_x: float
@@ -47,9 +47,9 @@ var _reload_elapsed := 0.0
 @onready var right_barrel: Marker2D = $RightBarrel
 @onready var shield: Area2D = $Shield
 
-const BULLET = preload("res://Bosses/Boss 1/Bullet/bullet.tscn")
-const MORTAR_BULLET = preload("res://Bosses/Boss 1/Mortar/mortar_bullet.tscn")
-const TRACKER = preload("res://Bosses/Boss 1/Tracker/tracker.tscn")
+const BULLET = preload("res://Boss/Bullet/bullet.tscn")
+const MORTAR_BULLET = preload("res://Boss/Mortar/mortar_bullet.tscn")
+const TRACKER = preload("res://Boss/Tracker/tracker.tscn")
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")

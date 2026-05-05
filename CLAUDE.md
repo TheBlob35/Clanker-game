@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Clanker-Game** — Godot 4.6 top-down 2D action game. Two collaborators working on the same repo.
 - Engine: Godot 4.6, Forward Plus renderer, Direct3D 12 (Windows), Jolt Physics
 - Main scene: `clanker-game/game.tscn`
-- Boss fight scene: `clanker-game/Boss Fights/Fight 1/Fight1.tscn`
+- Boss fight scene: `clanker-game/Fight/Fight1.tscn`
 
 ## Running the Game
 
@@ -17,13 +17,13 @@ Open the project in Godot 4.6 by loading `clanker-game/project.godot`. Run with 
 
 ```
 clanker-game/
-├── player/              # Player scene + script
-├── Bosses/Boss 1/       # Boss 1 scene + script + projectiles
-│   ├── Bullet/          # Gatling bullet (bullet.tscn / bullet.gd)
-│   ├── Mortar/          # Mortar bullet, warning circle (mortar_bullet.tscn, mortar_warning.gd)
-│   └── Tracker/         # Tracking shot (tracker.tscn / tracker.gd) — WIP
-├── Boss Fights/Fight 1/ # Fight arena scene (Fight1.tscn / Fight1.gd)
-└── assets/              # Sprites and tilesets
+├── player/          # Player scene + script
+├── Boss/            # Boss scene + script + projectiles
+│   ├── Bullet/      # Gatling bullet (bullet.tscn / bullet.gd)
+│   ├── Mortar/      # Mortar bullet, warning circle (mortar_bullet.tscn, mortar_warning.gd)
+│   └── Tracker/     # Tracking shot (tracker.tscn / tracker.gd)
+├── Fight/           # Fight arena scene (Fight1.tscn / Fight1.gd)
+└── assets/          # Sprites and tilesets
 ```
 
 ## Architecture
@@ -35,7 +35,7 @@ clanker-game/
 - `take_damage(amount: int)` is the public API — called by bullets on hit
 - `die()` reloads the current scene
 
-### Boss 1 (`Bosses/Boss 1/boss.gd`)
+### Boss (`Boss/boss.gd`)
 - `CharacterBody2D` locked to `initial_y` every frame (X-axis rails only)
 - Three-phase state machine via `enum Phase { ONE, TWO, THREE }`
   - Phase 1 → Phase 2 at 66% HP lost; Phase 2 → Phase 3 at 70% HP lost

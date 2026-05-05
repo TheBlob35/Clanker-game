@@ -1,4 +1,4 @@
-extends Area2D
+﻿extends Area2D
 
 const UP_SPEED = 500.0
 const HORIZONTAL_SPEED_RANGE = 100.0
@@ -16,7 +16,7 @@ var _falling := false
 var _player: CharacterBody2D = null
 var _warning: Node2D = null
 
-const WARNING_SCRIPT = preload("res://Bosses/Boss 1/Mortar/mortar_warning.gd")
+const WARNING_SCRIPT = preload("res://Boss/Mortar/mortar_warning.gd")
 
 func _ready():
 	xSpeed = randf_range(-HORIZONTAL_SPEED_RANGE, HORIZONTAL_SPEED_RANGE)

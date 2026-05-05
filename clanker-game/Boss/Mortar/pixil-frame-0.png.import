@@ -1,17 +1,17 @@
-[remap]
+﻿[remap]
 
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cigtoyja3qfon"
-path="res://.godot/imported/pixil-frame-0.png-982288e85a927e662ca2682c02d0f79e.ctex"
+path="res://.godot/imported/pixil-frame-0.png-33a536dadaa0670404442ba874fd8440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bosses/Boss 1/Mortar/pixil-frame-0.png"
-dest_files=["res://.godot/imported/pixil-frame-0.png-982288e85a927e662ca2682c02d0f79e.ctex"]
+source_file="res://Boss/Mortar/pixil-frame-0.png"
+dest_files=["res://.godot/imported/pixil-frame-0.png-33a536dadaa0670404442ba874fd8440.ctex"]
 
 [params]
 

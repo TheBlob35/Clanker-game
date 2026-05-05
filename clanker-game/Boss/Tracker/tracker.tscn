@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://db73pq54vipw"]
+﻿[gd_scene format=3 uid="uid://db73pq54vipw"]
 
-[ext_resource type="Script" uid="uid://bdhtru77nqdjr" path="res://Bosses/Boss 1/Tracker/tracker.gd" id="1_tcf3h"]
+[ext_resource type="Script" uid="uid://bdhtru77nqdjr" path="res://Boss/Tracker/tracker.gd" id="1_tcf3h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq7y"]
 size = Vector2(30, 3)
