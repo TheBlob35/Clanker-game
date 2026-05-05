@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://c36hmi17tmi1o"]
+[gd_scene format=3 uid="uid://c36hmi17tmi1o"]
 
 [ext_resource type="Script" uid="uid://drwqsfyjprfw1" path="res://Boss/Bullet/bullet.gd" id="1_rovkg"]
 

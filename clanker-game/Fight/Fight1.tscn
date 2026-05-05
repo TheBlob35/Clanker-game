@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://2ntgegwiapap"]
+[gd_scene format=3 uid="uid://2ntgegwiapap"]
 
 [ext_resource type="Script" uid="uid://byd5dksaun4am" path="res://Fight/Fight1.gd" id="1_n7x0c"]
 [ext_resource type="PackedScene" uid="uid://b27dkm8roragp" path="res://player/player.tscn" id="2_c65qo"]

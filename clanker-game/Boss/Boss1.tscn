@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://cmrqgmkqfpr87"]
+[gd_scene format=3 uid="uid://cmrqgmkqfpr87"]
 
 [ext_resource type="Script" uid="uid://dvew1f2x6l8ea" path="res://Boss/boss.gd" id="1_nlayo"]
 [ext_resource type="Texture2D" uid="uid://d4dv1fbg4fga" path="res://assets/Boss1 placeholder.jpg" id="2_hxu22"]

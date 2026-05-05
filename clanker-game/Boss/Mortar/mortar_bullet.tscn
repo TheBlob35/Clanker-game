@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://dik3ml4tbokoj"]
+[gd_scene format=3 uid="uid://dik3ml4tbokoj"]
 
 [ext_resource type="Script" uid="uid://disrq5hdbua0y" path="res://Boss/Mortar/mortar_bullet.gd" id="1_842wy"]
 [ext_resource type="Texture2D" uid="uid://cigtoyja3qfon" path="res://Boss/Mortar/pixil-frame-0.png" id="2_vvjgs"]
