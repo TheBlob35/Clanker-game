@@ -9,6 +9,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Main scene: `clanker-game/game.tscn`
 - Boss fight scene: `clanker-game/Fight/Fight1.tscn`
 
+## Game Idea
+
+**Theme:** Rebirth — for a game jam.
+
+**Genre:** Single-boss boss rush, Cuphead-inspired top-down 2D.
+
+**Core concept:** The boss is an immortal creature that cannot truly die. Each time you kill it, it rebirths into a new, more dangerous form. The player's goal is to find a way to permanently end the cycle. Phases are not just health thresholds — they are literal rebirths. The boss "comes back wrong" each time: more aggressive, more desperate.
+
+**What makes the theme mechanical (not just cosmetic):**
+- Each phase = the boss dying and rebirths into a new incarnation, not just getting harder
+- Wounds should *feel* like they carry over into the next rebirth — the boss is not resetting cleanly
+- Player is trying to break an immortality cycle, not just deplete a health bar
+
+**Planned scope:**
+- One boss, multiple phases (currently 3, more to be added)
+- Player hub between attempts for upgrades
+- Player needs a shooting mechanic (not yet implemented)
+- Lives system for the player (not yet implemented)
+
+**What NOT to do:**
+- Do not add multiple bosses — the entire game is this one fight
+- Do not add exploration or levels — boss rush only
+- Do not add cutscenes or narrative text — mechanics carry the theme
+
+**Current phase design:**
+- Phase 1: Stationary, gatling bursts — testing the player
+- Phase 2: Sweeping movement, mortar bombardment, shield while moving — more aggressive
+- Phase 3: Faster sweeps, tracking shots every 6.7s — relentless
+
+**Still to build:**
+- Player shooting
+- Player lives / rebirth system
+- HUD (player health, boss health bar)
+- Phase transition moments (visual/audio beat when boss rebirths)
+- Player upgrade hub
+
 ## Running the Game
 
 Open the project in Godot 4.6 by loading `clanker-game/project.godot`. Run with F5 (main scene) or F6 (current scene). There is no CLI build step.
