@@ -15,23 +15,26 @@ func _ready():
 	damage = get_meta("Damage")
 	crit_chance = get_meta("Crit")
 	add_to_group("player")
-	$AnimatedSprite2D.play("idle-when-down")
 
 func _physics_process(_delta):
 	var direction = Vector2.ZERO
 	
 	if Input.is_action_pressed("Right"):
+		print("höger")
 		$AnimatedSprite2D.play("idle-when-left_right")
 		direction.x += 1
 	if Input.is_action_pressed("Left"):
 		$AnimatedSprite2D.play("idle-when-left_right")
 		direction.x -= 1
+		print("vänster")
 	if Input.is_action_pressed("Down"):
 		$AnimatedSprite2D.play("idle-when-down")
 		direction.y += 1
+		print("Ner")
 	if Input.is_action_pressed("Up"):
 		$AnimatedSprite2D.play("idle-when-up")
 		direction.y -= 1
+		print("Upp")
 
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
@@ -44,7 +47,7 @@ func _update_animation(dir: Vector2):
 	# Flip sprite for left/right; swap to direction-specific anims once populated
 	if abs(dir.x) >= abs(dir.y):
 		$AnimatedSprite2D.flip_h = dir.x < 0
-	$AnimatedSprite2D.play("idle-when-down")
+	$AnimatedSprite2D.play("idle-when-left_right")
 
 func take_damage(amount: int):
 	current_hp -= amount
