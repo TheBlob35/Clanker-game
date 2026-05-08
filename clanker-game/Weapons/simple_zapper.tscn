@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c8yvwxhj4683x"]
+
+[ext_resource type="Script" uid="uid://cmnt7necuqyh3" path="res://Weapons/simple_zapper.gd" id="1_2c18b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r27y5"]
+size = Vector2(20, 58.5)
+
+[node name="Simple Zapper" type="Area2D" unique_id=1320408785]
+scale = Vector2(0.65, 0.65)
+script = ExtResource("1_2c18b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451853030]
+position = Vector2(0, 50)
+scale = Vector2(0.65, 0.65)
+shape = SubResource("RectangleShape2D_r27y5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1880508935]
+offset_left = -6.1538467
+offset_top = 30.769232
+offset_right = 6.1538467
+offset_bottom = 69.230774
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1181198258]
+position = Vector2(0, 30.769234)
+target_position = Vector2(0, 38.461536)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=2095607000]

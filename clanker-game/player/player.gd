@@ -7,8 +7,10 @@ var current_hp: int
 var damage: int
 var crit_chance: float
 
+var current_weapon := "Simple Zapper"
+
 func _ready():
-	max_hp = get_meta("Health")
+	max_hp = 3
 	current_hp = max_hp
 	damage = get_meta("Damage")
 	crit_chance = get_meta("Crit")
