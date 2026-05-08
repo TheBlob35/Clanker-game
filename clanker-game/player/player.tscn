@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b27dkm8roragp"]
 
-[ext_resource type="Texture2D" uid="uid://unm48shccfxv" path="res://player/Player-idle-sheet.png" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://unm48shccfxv" path="res://assets/Player-idle-sheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bc0sgh3qcmdsc" path="res://player/player.gd" id="1_onrkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
