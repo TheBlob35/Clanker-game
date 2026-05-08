@@ -1,7 +1,7 @@
 extends Area2D
 
-const SPEED = 150.0
-const LIFETIME = 5.5
+const SPEED = 125.0
+const LIFETIME = 8
 
 var direction := Vector2.ZERO
 var damage := 1
@@ -19,6 +19,7 @@ func _physics_process(delta):
 	if _player:
 		var desired = (_player.global_position - global_position).normalized()
 		direction = direction.lerp(desired, TURN_SPEED * delta)
+		rotation = direction.angle() + PI/2
 	position += direction * SPEED * delta
 	_age += delta
 	if _age >= LIFETIME:

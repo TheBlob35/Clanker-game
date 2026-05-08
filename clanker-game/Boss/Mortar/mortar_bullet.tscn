@@ -1,20 +1,17 @@
 [gd_scene format=3 uid="uid://dik3ml4tbokoj"]
 
 [ext_resource type="Script" uid="uid://disrq5hdbua0y" path="res://Boss/Mortar/mortar_bullet.gd" id="1_842wy"]
-[ext_resource type="Texture2D" uid="uid://cigtoyja3qfon" path="res://Boss/Mortar/pixil-frame-0.png" id="2_vvjgs"]
+[ext_resource type="Texture2D" uid="uid://dgpwrwfq5nqva" path="res://assets/Mortar round.png" id="2_13y4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mortar"]
-size = Vector2(25, 22)
+size = Vector2(32, 12)
 
 [node name="Area2D" type="Area2D" unique_id=2012489483]
 script = ExtResource("1_842wy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2123316850]
-position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_mortar")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1460519845]
 rotation = -1.5707964
-texture = ExtResource("2_vvjgs")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1207958287]
+texture = ExtResource("2_13y4f")

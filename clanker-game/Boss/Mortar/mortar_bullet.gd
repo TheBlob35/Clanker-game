@@ -1,4 +1,4 @@
-﻿extends Area2D
+extends Area2D
 
 const UP_SPEED = 500.0
 const HORIZONTAL_SPEED_RANGE = 100.0
@@ -33,13 +33,13 @@ func _physics_process(delta):
 	if not _falling:
 		position.y -= UP_SPEED * delta
 		position.x -= xSpeed * delta
-		rotation = Vector2(-xSpeed, -UP_SPEED).angle()
+		rotation = Vector2(-xSpeed, -UP_SPEED).angle() + PI
 		if _timer >= UP_TIME:
 			_falling = true
 			global_position = Vector2(target_pos.x, FALL_START_Y)
 	else:
 		position.y += DOWN_SPEED * delta
-		rotation = Vector2(0, DOWN_SPEED).angle()
+		rotation = Vector2(0, DOWN_SPEED).angle() + PI
 		var fall_progress = (global_position.y - FALL_START_Y) / (target_pos.y - FALL_START_Y)
 		if _warning:
 			_warning.set_progress(fall_progress)

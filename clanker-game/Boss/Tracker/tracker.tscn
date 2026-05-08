@@ -1,20 +1,17 @@
 [gd_scene format=3 uid="uid://db73pq54vipw"]
 
 [ext_resource type="Script" uid="uid://bdhtru77nqdjr" path="res://Boss/Tracker/tracker.gd" id="1_tcf3h"]
+[ext_resource type="Texture2D" uid="uid://dy7mourla7a1y" path="res://assets/homing bullet (Hellfire missile)).png" id="2_tiy00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq7y"]
-size = Vector2(30, 3)
+size = Vector2(80, 32)
 
 [node name="Tracker" type="Area2D" unique_id=1987495123]
 script = ExtResource("1_tcf3h")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=641204400]
-offset_right = 3.0
-offset_bottom = 3.0
-color = Color(1, 0, 0, 1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1580502487]
-visible = false
-position = Vector2(1.5, 1.5)
 scale = Vector2(0.1, 1)
 shape = SubResource("RectangleShape2D_neq7y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=230424071]
+texture = ExtResource("2_tiy00")
