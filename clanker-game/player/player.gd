@@ -19,14 +19,18 @@ func _ready():
 
 func _physics_process(_delta):
 	var direction = Vector2.ZERO
-
+	
 	if Input.is_action_pressed("Right"):
+		$AnimatedSprite2D.play("idle-when-left_right")
 		direction.x += 1
 	if Input.is_action_pressed("Left"):
+		$AnimatedSprite2D.play("idle-when-left_right")
 		direction.x -= 1
 	if Input.is_action_pressed("Down"):
+		$AnimatedSprite2D.play("idle-when-down")
 		direction.y += 1
 	if Input.is_action_pressed("Up"):
+		$AnimatedSprite2D.play("idle-when-up")
 		direction.y -= 1
 
 	if direction != Vector2.ZERO:
