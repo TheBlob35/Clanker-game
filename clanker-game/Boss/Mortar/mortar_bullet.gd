@@ -7,7 +7,7 @@ const UP_TIME = 0.5
 const BLAST_RADIUS = 75.0
 const FALL_START_Y = -300.0
 
-var damage := 30
+var damage := 1
 var target_pos := Vector2.ZERO
 var xSpeed := 0.0
 

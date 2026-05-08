@@ -4,7 +4,7 @@ const SPEED = 300.0
 const LIFETIME = 4.0
 
 var direction := Vector2.ZERO
-var damage := 10
+var damage := 1
 
 var _age := 0.0
 

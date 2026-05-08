@@ -1,4 +1,4 @@
-﻿extends CharacterBody2D
+extends CharacterBody2D
 
 enum Phase { ONE, TWO, THREE }
 enum MoveState { SWEEP_A, SWEEP_B, CENTERING, RELOADING }
@@ -52,6 +52,7 @@ const MORTAR_BULLET = preload("res://Boss/Mortar/mortar_bullet.tscn")
 const TRACKER = preload("res://Boss/Tracker/tracker.tscn")
 
 func _ready():
+	add_to_group("boss")
 	player = get_tree().get_first_node_in_group("player")
 	shield.get_node("Sprite2D").visible = false
 	initial_y = global_position.y
@@ -73,7 +74,7 @@ func _physics_process(delta):
 
 # --- Phase 1: stationary, shoots directly at player ---
 
-func _phase_one(delta):
+func _phase_two(delta):
 	_gatling_timer += delta
 	if _gatling_burst_count < GATLING_BURST:
 		if _gatling_timer >= 1.0 / GATLING_RATE:
@@ -85,16 +86,18 @@ func _phase_one(delta):
 			_gatling_timer = 0.0
 			_gatling_burst_count = 0
 
-func _shoot_gatling():
+func _shoot_gatling(direction: Vector2 = Vector2.ZERO):
+	if direction == Vector2.ZERO:
+		direction = (player.global_position - barrel.global_position).normalized()
 	var bullet = BULLET.instantiate()
 	get_parent().add_child(bullet)
 	bullet.global_position = barrel.global_position
-	bullet.direction = (player.global_position - barrel.global_position).normalized()
-	bullet.damage = 10
+	bullet.direction = direction
+	bullet.damage = 1
 
 # --- Phase 2: sweeps left/right, fires mortars, shield while moving ---
 
-func _phase_two(delta):
+func _phase_one(delta):
 	match _move_state:
 
 		MoveState.RELOADING:
@@ -172,9 +175,17 @@ func _phase_three(delta):
 				_move_state = MoveState.SWEEP_B
 
 		MoveState.SWEEP_B:
+			_gatling_timer += delta
+			
 			_set_shield(true)
 			velocity.x = move_toward(velocity.x, _sweep_dir * MOVE_SPEED_3, ACCELERATION * delta)
 			move_and_slide()
+			
+			if _gatling_timer >= 1.0 / GATLING_RATE:
+				_gatling_timer = 0.0
+				_gatling_burst_count += 1
+				_shoot_gatling(Vector2.DOWN)
+			
 			_fire_mortar(delta)
 			_sweep_elapsed += delta
 			if _sweep_elapsed >= _sweep_time * 2.0:
@@ -184,7 +195,12 @@ func _phase_three(delta):
 
 		MoveState.CENTERING:
 			_set_shield(true)
+			_gatling_timer += delta
 			var dist = initial_x - global_position.x
+			if _gatling_timer >= 1.0 / GATLING_RATE:
+				_gatling_timer = 0.0
+				_gatling_burst_count += 1
+				_shoot_gatling(Vector2.DOWN)
 			if abs(dist) < 0.7:
 				global_position.x = initial_x
 				velocity.x = 0.0
@@ -222,12 +238,12 @@ func _fire_mortar(delta):
 
 func _shoot_mortar():
 	var bullet = MORTAR_BULLET.instantiate()
-	bullet.target_pos = Vector2(
-		randf_range(0, 1152),
-		randf_range(390, 600)
+	bullet.target_pos = player.global_position + Vector2(
+		randf_range(-200, 200),
+		randf_range(-200, 200)
 	)
 
-	bullet.damage = 30
+	bullet.damage = 1
 	get_parent().add_child(bullet)
 	bullet.global_position = barrel.global_position
 

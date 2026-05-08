@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4rtx"]
 size = Vector2(30, 3)
 
-[node name="Area2D" type="Area2D" unique_id=440813742]
+[node name="Zapper" type="Area2D" unique_id=440813742]
 script = ExtResource("1_rovkg")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=649695365]

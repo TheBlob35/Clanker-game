@@ -4,9 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b27dkm8roragp" path="res://player/player.tscn" id="2_c65qo"]
 [ext_resource type="PackedScene" uid="uid://cmrqgmkqfpr87" path="res://Boss/Boss1.tscn" id="3_cfxdv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ari2h"]
-size = Vector2(1151, 20)
-
 [node name="BossFight" type="Node2D" unique_id=100000001]
 script = ExtResource("1_n7x0c")
 
@@ -15,12 +12,6 @@ position = Vector2(576, 324)
 
 [node name="Player" parent="." unique_id=100000002 instance=ExtResource("2_c65qo")]
 position = Vector2(576, 501)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1775054120]
-position = Vector2(576, 350)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=750556023]
-shape = SubResource("RectangleShape2D_ari2h")
 
 [node name="Boss1" parent="." unique_id=1188212622 instance=ExtResource("3_cfxdv")]
 position = Vector2(576, 270)

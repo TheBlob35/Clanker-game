@@ -4,7 +4,7 @@ const SPEED = 150.0
 const LIFETIME = 5.5
 
 var direction := Vector2.ZERO
-var damage := 10
+var damage := 1
 
 const TURN_SPEED = 1.5
 
